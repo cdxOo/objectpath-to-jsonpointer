@@ -1,5 +1,5 @@
 'use strict';
-var matcher = /[\/\.]/g;
+var matcher = /[\/~]/g;
 
 function escaper (m) {
     switch (m) {
@@ -13,8 +13,10 @@ function convertPathToPointer (path) {
 
     var converted = [];
     for (var i = 0; i < tokens.length; i += 1) {
-        if (tokens[i]) {
-            converted.push(tokens[i].replace(matcher, escaper))
+        var token = tokens[i];
+
+        if (token) {
+            converted.push(token.replace(matcher, escaper))
         }
         else {
             throw new Error(
